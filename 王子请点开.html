@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Surprise</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 50px;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 36px;
+            color: #d72631;
+        }
+        .message {
+            font-size: 18px;
+            color: #ff69b4;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #ff1493;
+        }
+        #surprise {
+            margin-top: 30px;
+            font-size: 24px;
+            color: #d72631;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+        .hearts {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 30px;
+            height: 30px;
+            background: url('https://img.icons8.com/emoji/48/000000/red-heart.png') no-repeat center center;
+            background-size: cover;
+            animation: floatHearts 5s infinite ease-in-out;
+        }
+        @keyframes floatHearts {
+            0% {
+                transform: translateX(-50%) translateY(0) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-50%) translateY(-800px) scale(1.5);
+                opacity: 0;
+            }
+        }
+        #surprise img {
+            margin-top: 20px;
+            max-width: 100%;
+            height: auto;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <h1>❤️ Happy Chinese Valentine's Day! ❤️</h1>
+    <div class="message">
+        <p>Love you so I don't wanna fall asleep<br>for reality is better than a dream.</p>
+        <p>With all my love, just for you.</p>
+    </div>
+
+    <button onclick="startSurprise()" ontouchstart="startSurprise()">Click me for a surprise!</button>
+
+    <div id="surprise">You are the best thing that's ever happened to me!</div>
+
+    <script>
+        function startSurprise() {
+            const surpriseDiv = document.getElementById('surprise');
+            surpriseDiv.style.opacity = 1;
+
+            // Add a line break before the image to move it to the next line
+            const br = document.createElement('br');
+            surpriseDiv.appendChild(br);
+
+            // Add the image below the text
+            const img = document.createElement('img');
+            img.src = 'image/wow.jpg';  // 使用本地图片路径
+            surpriseDiv.appendChild(img);
+
+            // Show the image with a delay for smooth effect
+            setTimeout(() => {
+                img.style.opacity = 1;
+            }, 500);
+
+            // Continuously create heart elements
+            setInterval(createHeart, 300);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'hearts';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = 2 + Math.random() * 3 + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
